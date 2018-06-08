@@ -1,0 +1,304 @@
+- 
+  hosts: dns-auth
+  gather_facts: no
+  tasks:
+     -       
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "BIND910"
+          marker_end: "BIND910"
+          marker: "# {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/named.conf
+          block: |
+                 #
+                 # SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 # CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 # DEPARTAMENTO DE INFRAESTRUTURA
+                 #
+                 # SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 # SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 # ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 # DATA: {{ ansible_date_time.iso8601 }}
+                 #
+                 # RESPONSAVEL: Marcos Alves
+                 # CONTATO: infraestrutura@seris.al.gov.br
+                 
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "BIND910"
+          marker_end: "[BIND910]"
+          marker: "# {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/named.conf.seris
+          block: |
+                 #
+                 # SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 # CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 # DEPARTAMENTO DE INFRAESTRUTURA
+                 #
+                 # SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 # SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 # ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 # DATA: {{ ansible_date_time.iso8601 }}
+                 #
+                 # RESPONSAVEL: Marcos Alves
+                 # CONTATO: infraestrutura@seris.al.gov.br
+                 #
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/sistema.prisional
+          block: |
+                 
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/seris.al.gov.br
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/sgap.al.gov.br
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/sgap.local
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/168.192.in-addr.arpa
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/21.172.in-addr.arpa
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/27.172.in-addr.arpa
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/28.172.in-addr.arpa
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/29.172.in-addr.arpa
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/30.172.in-addr.arpa
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+     -
+       name: INSERIR CABECALHO DA COPIA DOS ARQUIVOS REALIZADA
+       blockinfile:
+          marker_begin: "[BIND910]"
+          marker_end: "[BIND910]"
+          marker: "; {mark} - SERVIDOR DNS em: {{ ansible_hostname }} "
+          path: /usr/local/etc/namedb/seris/31.172.in-addr.arpa
+          block: |
+                 ;
+                 ; SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS
+                 ; CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI
+                 ; DEPARTAMENTO DE INFRAESTRUTURA
+                 ;
+                 ; SERVIDOR DE DNS AUTORITATIVO : {{ ansible_fqdn }}
+                 ; SISTEMA OPERACIONAL: {{ ansible_system }} {{ ansible_kernel }}
+                 ; ENDERECO IP: {{ ansible_default_ipv4.address }}
+                 ; DATA: {{ ansible_date_time.iso8601 }}
+                 ;
+                 ; RESPONSAVEL: Marcos Alves
+                 ; CONTATO: infraestrutura@seris.al.gov.br
+                 ;
+          insertbefore: BOF
+          backup: yes
+
