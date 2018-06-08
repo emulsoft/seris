@@ -1,0 +1,115 @@
+--- 
+- 
+  gather_facts: true
+  hosts: dns-auth
+  remote_user: root
+  tasks: 
+    - 
+      pause: 
+        prompt: "\n\n\
+            \x20SECRETARIA DE RESSOCIALIZACAO E INCLUSAO SOCIAL - SERIS\n\
+            \x20CHEFIA DE TECNOLOGIA DA INFORMACAO - CHETI\n\
+            \x20 {{ ansible_date_time.date}} \n\n\
+            \x20Configuracao de servidores DNS - AUTORITATIVOS\n\n\
+            \x20O que sera feito:\n\n\
+            \x20- Configuracao do repositorio PKG local dos servidores:\n\ 
+            \x20- Instalacao e Atualizacao do PKG\n\
+            \x20- Instalacao e Atualizacao do Python\n\
+            \x20- Configuracao do link para o executavel do Python\n\
+            \x20- Criacao de usuarios para o Chefe e Analista de TI\n\
+            \x20- Copia de arquivo padrao resolv.conf\n\
+            \x20- Configuracao do NTP (rc.conf e crontab)\n\
+            \x20- Desabilitar SENDMAIL\n\n\
+            \x20- Obs.: Para executar em um servidor especifico, usar: \n\
+            \x20- ansible-playbook postinstall-seris.yml --limit=host\n\n\
+            \x20Para continuar, pressione ENTER:\n"
+    - 
+      name: "(1) - [GERAL] - Verificando a versao \n\ dos Sistemas Operacionais dos servidores  FreeBSD"
+      changed_when: "'FreeBSD' not in uname.stdout"
+      raw: uname -inor
+      register: uname
+    -
+      debug:
+        msg: "{{ uname.stdout }}"
+      when:
+         - inventory_hostname in groups['freebsd']             
+    - 
+      name: Upgrade FreeBSD packages
+      shell: pkg update -f
+      when: ansible_distribution == 'FreeBSD'
+      register: result_pkg
+      changed_when: "'Your packages are up to date' not in result_pkg.stdout"
+    - 
+      debug: var=result_pkg
+      when: result_pkg.changed
+    - 
+      name: install/upgrade/confirm bind910 package is installed
+      pkgng: 
+        name:
+            - pkg
+            - ccze
+            - bind911
+            - vim-console
+            - tmux
+            - dnstop           
+        state: present
+    -
+     copy:
+       #directory_mode: 
+       backup: true
+       dest: /usr/local/etc/namedb/
+       group: bind
+       #mode: 420
+       owner: bind
+       src: /root/config/dns/bind/seris
+     name: "(5) - [GERAL] Copiando arquivos de  para os servidores FreeBSD"
+    -
+     copy:
+       #directory_mode:
+       backup: true
+       dest: /usr/local/etc/namedb/named.conf
+       group: wheel
+       #mode: 420
+       owner: root
+       src: /root/config/dns/bind/named.conf
+     name: "(5) - [GERAL] Copiando arquivos de  para os servidores FreeBSD"
+    -
+     copy:
+       #directory_mode:
+       backup: true
+       dest: /usr/local/etc/namedb/named.conf.seris
+       group: wheel
+       #mode: 420
+       owner: root
+       src: /root/config/dns/bind/named.conf.seris
+     name: "(5) - [GERAL] Copiando arquivos de  para os servidores FreeBSD"
+    -
+     lineinfile:
+        backup: true
+        path: /etc/syslog.conf
+        line: 'local4.*                                       @levada.seris.al.gov.br'
+     name: "Configurando NTPDATE #3 (adicionando entrada na crontab"
+     register: crontab
+    -
+     name: RESTART NAMED
+     service: 
+         name: named
+         state: reloaded
+         enabled: yes
+     register: bind910
+#     when: "'started' not in bind910.state" 
+    -
+     name: RESTART SYSLOGD
+     service:
+         name: syslogd
+         state: reloaded
+     #    enabled: yes
+-
+ name: HEADERS
+ import_playbook:
+     header-dnsauth.yml
+ tags: headerdns
+
+#
+#  vars:
+#      - 
